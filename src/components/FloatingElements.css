@@ -1,0 +1,24 @@
+.floating-strip {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: clamp(160px, 22vw, 260px);
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.floating-object {
+  width: clamp(120px, 16vw, 200px);
+  height: 100%;
+}
+
+.floating-object canvas {
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .fo-rosemary {
+    display: none;
+  }
+}

@@ -1,0 +1,96 @@
+.dishes {
+  background: var(--warm-white);
+}
+
+.dishes-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 5rem;
+}
+
+.dishes-header h2 {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  margin-top: 0.75rem;
+  color: var(--dark);
+}
+
+.dish-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3.5rem, 8vw, 6rem);
+}
+
+.dish-row {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.dish-row.reverse {
+  grid-template-columns: 0.95fr 1.05fr;
+}
+
+.dish-row.reverse .dish-photo {
+  order: 2;
+}
+
+.dish-row.reverse .dish-copy {
+  order: 1;
+}
+
+.dish-photo {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border: 10px solid var(--warm-white);
+  outline: 1px solid var(--gold);
+  outline-offset: -1px;
+  box-shadow: 0 30px 60px -30px rgba(28, 16, 8, 0.25);
+}
+
+.dish-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dish-number {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+.dish-copy h3 {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  color: var(--dark);
+  margin: 0.5rem 0 1.1rem;
+}
+
+.dish-copy p {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.dish-price {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--ember);
+}
+
+@media (max-width: 820px) {
+  .dish-row,
+  .dish-row.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .dish-row.reverse .dish-photo,
+  .dish-row.reverse .dish-copy {
+    order: initial;
+  }
+}

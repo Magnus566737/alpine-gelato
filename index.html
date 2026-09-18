@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpine Gelato | Karachi's Finest Since 1990</title>
+<meta name="description" content="Belgian Chocolate, Cheese Strawberry, Wild Blueberry, Pistachio &amp; Cookies and Cream. Karachi's finest ice cream parlour since 1990.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+:root {
+    --text-color: #ffffff;
+    --accent-color: #C8860A;
+    --accent-text: #0a0500;
+    --muted-color: rgba(255, 255, 255, 0.65);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --font-main: 'Inter', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --gold: #C9A84C;
+
+    --bg-inner: #3d1500;
+    --bg-mid: #1a0800;
+    --bg-outer: #050100;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    color: var(--text-color);
+    font-family: var(--font-main);
+    background: var(--bg-outer);
+    overflow-x: hidden;
+}
+
+/* Lenis smooth-scroll helper classes */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ===== Nav ===== */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.75rem 4%;
+    z-index: 200;
+}
+
+.logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-links a {
+    color: var(--muted-color);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.order-nav-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--accent-color);
+    border: 1.5px solid var(--accent-color);
+    padding: 0.65rem 1.6rem;
+    border-radius: 100px;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.order-nav-btn:hover {
+    background: var(--accent-color);
+    color: var(--accent-text);
+}
+
+/* ===== Hero layout (static — Belgian Chocolate only, no switching) ===== */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4%;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at center, var(--bg-inner) 0%, var(--bg-mid) 55%, var(--bg-outer) 100%);
+}
+
+/* ---- Left ---- */
+.hero-left {
+    width: 30%;
+    min-width: 320px;
+    z-index: 50;
+}
+
+.eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.headline {
+    font-family: var(--font-heading);
+    font-size: clamp(3.2rem, 6vw, 6.5rem);
+    line-height: 0.88;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.headline span { display: block; }
+.headline .l1 { color: rgba(255, 255, 255, 0.55); }
+
+.desc {
+    color: var(--muted-color);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    max-width: 360px;
+    margin-bottom: 2.5rem;
+}
+
+.award-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.award-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.award-text { display: flex; flex-direction: column; }
+.award-title { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted-color); }
+.award-subtitle { font-size: 0.85rem; font-weight: 600; }
+
+/* ---- Center ---- */
+.hero-center {
+    position: relative;
+    width: 44%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-glow {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+    opacity: 0.32;
+    pointer-events: none;
+}
+
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--accent-color);
+    opacity: 0.85;
+    box-shadow: 0 0 18px 2px var(--accent-color);
+}
+
+.image-wrap {
+    position: relative;
+    width: clamp(380px, 58vh, 700px);
+    height: clamp(380px, 58vh, 700px);
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow:
+        0 50px 110px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 0 120px -20px var(--accent-color),
+        0 0 220px -40px var(--accent-color);
+    z-index: 10;
+    will-change: transform;
+}
+
+.image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 36px;
+    box-shadow: inset 0 0 0 3px var(--accent-color), inset 0 0 40px -10px var(--accent-color);
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+#flavor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-wrap.img-missing #flavor-img { display: none; }
+.image-wrap.img-missing {
+    background: linear-gradient(135deg, var(--accent-color), rgba(0, 0, 0, 0.4));
+}
+.image-wrap.img-missing::before {
+    content: 'Photo coming soon';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    padding: 2rem;
+}
+
+/* ---- Right: scroll cue (no clickable flavour switching any more) ---- */
+.hero-right {
+    width: 22%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 6rem 0;
+    z-index: 50;
+    text-align: right;
+}
+
+.scroll-cue-label {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.scroll-cue-sub {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--muted-color);
+    letter-spacing: 0.06em;
+    margin-bottom: 1.25rem;
+}
+
+.scroll-cue-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: scrollBounce 1.8s ease-in-out infinite;
+    margin-left: auto;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* ===== Hero-scoped footer strip (scrolls away with the hero) ===== */
+.site-footer {
+    position: absolute;
+    bottom: 1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--muted-color);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    z-index: 50;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ================================================================
+   SECTION 2 — Pinned cinematic flavour takeover
+   ================================================================ */
+.flavor-pin {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.flavor-pin-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.flavor-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    background: radial-gradient(circle at center, var(--fp1) 0%, var(--fp2) 55%, var(--fp3) 100%);
+}
+
+.flavor-pin-number {
+    position: absolute;
+    top: 2.5rem;
+    right: 5%;
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    letter-spacing: 0.08em;
+    color: var(--fp-accent);
+    z-index: 6;
+}
+
+.pin-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pin-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--fp-accent);
+    opacity: 0.7;
+    box-shadow: 0 0 16px 2px var(--fp-accent);
+}
+
+.flavor-pin-media {
+    position: relative;
+    order: 1;
+    width: 45%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5%;
+    z-index: 3;
+    animation: pinBob 6s ease-in-out infinite;
+}
+
+@keyframes pinBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-22px); }
+}
+
+.flavor-pin-img-wrap {
+    width: clamp(340px, 46vh, 620px);
+    height: clamp(340px, 46vh, 620px);
+    max-width: 100%;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow:
+        0 50px 120px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 0 130px -20px var(--fp-accent),
+        0 0 240px -40px var(--fp-accent);
+}
+
+.flavor-pin-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.flavor-pin-text {
+    position: relative;
+    order: 2;
+    width: 45%;
+    max-width: 45%;
+    flex-shrink: 0;
+    padding-right: 5%;
+    z-index: 4;
+}
+
+.flavor-pin-title {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 9vw, 9.5rem);
+    line-height: 0.88;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.flavor-pin-ingredients {
+    font-size: 1.02rem;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+}
+
+.pin-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    z-index: 20;
+}
+
+.pin-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+}
+
+/* ================================================================
+   SECTION 3 — The Alpine Experience (infinite auto-scroll photo strip)
+   ================================================================ */
+.experience-section {
+    background: #050302;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.02rem;
+    margin-top: -2.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.strip-viewport {
+    width: 100%;
+    overflow: hidden;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    will-change: transform;
+    animation: marquee 25s linear infinite;
+}
+
+.strip-viewport:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.strip-item {
+    position: relative;
+    width: 680px;
+    height: 500px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.strip-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.strip-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.15) 45%, transparent 70%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.75rem;
+}
+
+.strip-overlay span {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+/* ================================================================
+   Shared section chrome (Pricing / Flavours grid / Find Us / Footer)
+   ================================================================ */
+.section {
+    position: relative;
+    z-index: 2;
+    background: #030303;
+    padding: 7rem 6%;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    text-align: center;
+    color: #fff;
+    margin-bottom: 3.5rem;
+}
+
+/* ===== SECTION 4 — Pricing (2 rows of 3) ===== */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    background: rgba(201, 168, 76, 0.08);
+    border-color: var(--gold);
+    box-shadow: 0 25px 50px -15px rgba(201, 168, 76, 0.35);
+}
+
+.pricing-name {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+}
+
+.pricing-price {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.1rem;
+    color: var(--gold);
+}
+
+/* ===== SECTION 5 — All flavours (4 columns) ===== */
+.flavours-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.flavour-card {
+    --card-glow: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 1.1rem 1.3rem;
+    background: rgba(255, 255, 255, 0.02);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.flavour-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    border-color: var(--card-glow);
+    box-shadow: 0 20px 40px -10px var(--card-glow);
+}
+
+.flavour-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--card-glow);
+    flex-shrink: 0;
+    transition: background 0.35s ease;
+}
+
+.flavour-card span.flavour-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: #f0f0f0;
+}
+
+/* ===== SECTION 6 — Find Us (exterior.png dark-overlay background) ===== */
+.findus-section {
+    position: relative;
+    overflow: hidden;
+    background: #050302;
+}
+
+.findus-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.findus-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.findus-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(3, 2, 1, 0.88) 0%, rgba(3, 2, 1, 0.94) 60%, #050302 100%);
+}
+
+.findus-content {
+    position: relative;
+    z-index: 2;
+}
+
+.findus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+}
+
+.findus-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 18px;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: #fff;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.findus-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.findus-card.more {
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.findus-meta {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.findus-meta p {
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+}
+
+.findus-meta .findus-phone {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    color: var(--gold);
+}
+
+.findus-cta {
+    text-align: center;
+}
+
+.findus-facebook-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 2rem auto 0;
+    padding: 0.85rem 1.75rem;
+    border: 1.5px solid var(--gold);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.findus-facebook-btn:hover {
+    background: var(--gold);
+    color: #1a1206;
+    transform: translateY(-2px);
+}
+
+.fb-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #1a1206;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.findus-facebook-btn:hover .fb-icon {
+    background: #1a1206;
+    color: var(--gold);
+}
+
+.findus-map-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: #fff;
+    text-align: center;
+    margin: 3.5rem 0 1.5rem;
+}
+
+.findus-map-card {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1.5px solid var(--gold);
+    border-radius: 20px;
+    overflow: hidden;
+    background: #0d0d0d;
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5), 0 0 70px -25px var(--gold);
+}
+
+.findus-map-card iframe {
+    display: block;
+    filter: grayscale(0.4) contrast(1.1) brightness(0.85);
+}
+
+/* ===== SECTION 7 — Footer ===== */
+.site-footer-full {
+    text-align: center;
+    padding: 5.5rem 6% 3rem;
+    background: #000;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-logo {
+    font-family: var(--font-heading);
+    font-size: clamp(3.2rem, 9vw, 6.5rem);
+    color: #fff;
+    margin-bottom: 1.25rem;
+}
+
+.footer-inner p {
+    font-family: var(--font-heading);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.footer-phone {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-top: 1.5rem;
+}
+
+/* ===== Responsive: hero + shared sections ===== */
+@media (max-width: 1100px) {
+    .hero { flex-direction: column; justify-content: center; gap: 2rem; padding-top: 7rem; height: auto; min-height: 100vh; }
+    .hero-left, .hero-center, .hero-right { width: 100%; }
+    .hero-left { text-align: center; }
+    .hero-right { align-items: center; text-align: center; }
+    .scroll-cue-arrow { margin-left: auto; margin-right: auto; }
+    .award-badge { justify-content: center; }
+    .headline { font-size: clamp(2.5rem, 10vw, 4rem); }
+    .desc { margin-left: auto; margin-right: auto; }
+}
+
+/* ===== Responsive: pinned flavour section falls back to a normal stack ===== */
+@media (max-width: 799px) {
+    .flavor-pin, .flavor-pin-inner { height: auto; }
+    .flavor-slide {
+        position: relative;
+        min-height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        padding: 6rem 6% 4rem;
+        gap: 2rem;
+        transform: none !important;
+    }
+    .flavor-pin-text {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        padding-right: 0;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .flavor-pin-media {
+        width: 100%;
+        padding-left: 0;
+    }
+    .flavor-pin-img-wrap { width: min(80vw, 380px); height: min(80vw, 380px); }
+    .flavor-pin-number { top: 1.5rem; opacity: 1 !important; }
+    .pin-progress { display: none; }
+}
+
+@media (max-width: 900px) {
+    .findus-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+    .flavours-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+    .pricing-grid, .findus-grid, .flavours-grid { grid-template-columns: 1fr; }
+    .strip-item { width: 85vw; height: 340px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+    <div class="logo">Alpine Gelato</div>
+    <nav class="nav-links">
+        <a href="#flavor-pin" class="active">Flavours</a>
+        <a href="#experience">Story</a>
+        <a href="#visit">Locations</a>
+        <a href="#footer">Contact</a>
+    </nav>
+    <a href="#visit" class="order-nav-btn">Visit Us</a>
+</header>
+
+<main class="hero" id="hero">
+
+    <div class="hero-left">
+        <span class="eyebrow">EST. 1990 &middot; KARACHI'S FINEST</span>
+        <h1 class="headline">
+            <span class="l1">Belgian</span>
+            <span class="l2">Chocolate.</span>
+        </h1>
+        <p class="desc">Our signature since 1990. Rich, dark, intense.</p>
+        <div class="award-badge">
+            <div class="award-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 15L15 18L19 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="award-text">
+                <span class="award-title">KARACHI'S FAVOURITE</span>
+                <span class="award-subtitle">EST. 1990</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-center">
+        <div class="center-glow"></div>
+        <div class="particles" id="particles"></div>
+        <div class="image-wrap" id="image-wrap">
+            <img id="flavor-img" src="/flavours/chocolate.png" alt="Belgian Chocolate gelato">
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <span class="scroll-cue-label">5 Signature Flavours</span>
+        <span class="scroll-cue-sub">Scroll to explore</span>
+        <div class="scroll-cue-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="#C8860A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="site-footer">Thirteen outlets across Karachi &middot; 0300-0227803</div>
+
+</main>
+
+<!-- ================================================================
+     SECTION 2 — Pinned cinematic flavour takeover
+     ================================================================ -->
+<section class="flavor-pin" id="flavor-pin">
+    <div class="flavor-pin-inner">
+
+        <div class="flavor-slide" style="--fp1:#3d1500;--fp2:#1a0800;--fp3:#050100;--fp-accent:#C8860A;">
+            <span class="flavor-pin-number">01</span>
+            <div class="pin-particles"></div>
+            <div class="flavor-pin-media">
+                <div class="flavor-pin-img-wrap">
+                    <img src="/flavours/chocolate.png" alt="Belgian Chocolate gelato">
+                </div>
+            </div>
+            <div class="flavor-pin-text">
+                <h2 class="flavor-pin-title">Belgian<br>Chocolate.</h2>
+                <p class="flavor-pin-ingredients">Belgian cocoa &middot; Fresh cream &middot; Vanilla bean</p>
+            </div>
+        </div>
+
+        <div class="flavor-slide" style="--fp1:#3d0020;--fp2:#1a000f;--fp3:#080003;--fp-accent:#ff4d6d;">
+            <span class="flavor-pin-number">02</span>
+            <div class="pin-particles"></div>
+            <div class="flavor-pin-media">
+                <div class="flavor-pin-img-wrap">
+                    <img src="/flavours/strawberry.png" alt="Cheese Strawberry gelato">
+                </div>
+            </div>
+            <div class="flavor-pin-text">
+                <h2 class="flavor-pin-title">Cheese<br>Strawberry.</h2>
+                <p class="flavor-pin-ingredients">Fresh strawberries &middot; Cream cheese &middot; Graham crumble</p>
+            </div>
+        </div>
+
+        <div class="flavor-slide" style="--fp1:#0d0040;--fp2:#060020;--fp3:#020008;--fp-accent:#7b2fff;">
+            <span class="flavor-pin-number">03</span>
+            <div class="pin-particles"></div>
+            <div class="flavor-pin-media">
+                <div class="flavor-pin-img-wrap">
+                    <img src="/flavours/blueberry.png" alt="Wild Blueberry gelato">
+                </div>
+            </div>
+            <div class="flavor-pin-text">
+                <h2 class="flavor-pin-title">Wild<br>Blueberry.</h2>
+                <p class="flavor-pin-ingredients">Wild blueberries &middot; Fresh cream &middot; Lemon zest</p>
+            </div>
+        </div>
+
+        <div class="flavor-slide" style="--fp1:#0d3000;--fp2:#061500;--fp3:#020500;--fp-accent:#4CAF50;">
+            <span class="flavor-pin-number">04</span>
+            <div class="pin-particles"></div>
+            <div class="flavor-pin-media">
+                <div class="flavor-pin-img-wrap">
+                    <img src="/flavours/pistachio.png" alt="Pistachio gelato">
+                </div>
+            </div>
+            <div class="flavor-pin-text">
+                <h2 class="flavor-pin-title">Premium<br>Pistachio.</h2>
+                <p class="flavor-pin-ingredients">Peshawari pistachios &middot; Fresh cream &middot; Honey</p>
+            </div>
+        </div>
+
+        <div class="flavor-slide" style="--fp1:#1a1a1a;--fp2:#0d0d0d;--fp3:#030303;--fp-accent:#ffffff;">
+            <span class="flavor-pin-number">05</span>
+            <div class="pin-particles"></div>
+            <div class="flavor-pin-media">
+                <div class="flavor-pin-img-wrap">
+                    <img src="/flavours/cookies-cream.png" alt="Cookies and Cream gelato">
+                </div>
+            </div>
+            <div class="flavor-pin-text">
+                <h2 class="flavor-pin-title">Cookies<br>&amp; Cream.</h2>
+                <p class="flavor-pin-ingredients">Belgian chocolate base &middot; Crushed Oreo cookies &middot; Fresh cream</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="pin-progress"><div class="pin-progress-bar" id="pin-progress-bar"></div></div>
+</section>
+
+<!-- ================================================================
+     SECTION 3 — The Alpine Experience
+     ================================================================ -->
+<section class="section experience-section" id="experience">
+    <h2 class="section-title reveal-up">The Alpine Experience</h2>
+    <p class="section-subtitle reveal-up">Where Karachi comes for ice cream since 1990</p>
+    <div class="strip-viewport">
+        <div class="marquee-track">
+            <div class="strip-item"><img src="/shop/exterior.png" alt="Alpine Gelato exterior"><div class="strip-overlay"><span>Since 1990</span></div></div>
+            <div class="strip-item"><img src="/shop/counter.png" alt="Alpine Gelato counter"><div class="strip-overlay"><span>25+ Flavours Daily</span></div></div>
+            <div class="strip-item"><img src="/shop/seating.png" alt="Alpine Gelato seating"><div class="strip-overlay"><span>Come Sit With Us</span></div></div>
+            <div class="strip-item"><img src="/shop/toppings.png" alt="Alpine Gelato toppings"><div class="strip-overlay"><span>Choose Your Toppings</span></div></div>
+            <div class="strip-item"><img src="/shop/cone.png" alt="Alpine Gelato cone"><div class="strip-overlay"><span>Made Fresh Daily</span></div></div>
+            <div class="strip-item"><img src="/shop/display.png" alt="Alpine Gelato display"><div class="strip-overlay"><span>Always In Season</span></div></div>
+            <!-- duplicate set for a seamless infinite loop -->
+            <div class="strip-item" aria-hidden="true"><img src="/shop/exterior.png" alt=""><div class="strip-overlay"><span>Since 1990</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img src="/shop/counter.png" alt=""><div class="strip-overlay"><span>25+ Flavours Daily</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img src="/shop/seating.png" alt=""><div class="strip-overlay"><span>Come Sit With Us</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img src="/shop/toppings.png" alt=""><div class="strip-overlay"><span>Choose Your Toppings</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img src="/shop/cone.png" alt=""><div class="strip-overlay"><span>Made Fresh Daily</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img src="/shop/display.png" alt=""><div class="strip-overlay"><span>Always In Season</span></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     SECTION 4 — Pricing
+     ================================================================ -->
+<section class="section pricing-section" id="pricing">
+    <h2 class="section-title reveal-up">Our Scoops</h2>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <span class="pricing-name">Single Scoop</span>
+            <span class="pricing-price">Rs. 120</span>
+        </div>
+        <div class="pricing-card">
+            <span class="pricing-name">Double Scoop</span>
+            <span class="pricing-price">Rs. 220</span>
+        </div>
+        <div class="pricing-card">
+            <span class="pricing-name">Triple Scoop</span>
+            <span class="pricing-price">Rs. 320</span>
+        </div>
+        <div class="pricing-card">
+            <span class="pricing-name">5 Scoop Mix Box</span>
+            <span class="pricing-price">Rs. 450</span>
+        </div>
+        <div class="pricing-card">
+            <span class="pricing-name">10 Scoop Mix Box</span>
+            <span class="pricing-price">Rs. 800</span>
+        </div>
+        <div class="pricing-card">
+            <span class="pricing-name">Extra Toppings</span>
+            <span class="pricing-price">+Rs. 30</span>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     SECTION 5 — All flavours grid
+     ================================================================ -->
+<section class="section flavours-section" id="flavours">
+    <h2 class="section-title reveal-up">25+ Flavours</h2>
+    <div class="flavours-grid">
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Mango</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Strawberry</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Blueberry</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Pineapple</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Tutti Fruity</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Vanilla</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Butter Scotch</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Butter Pecan</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Pistachio</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Crunch</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Shah Kulfa</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Chocolate Chip</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">White Fudge</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Bounty</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Cheese Strawberry</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Cookies and Cream</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Fig (Anjeer)</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Peshawari</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Cashew</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Bubble Yum</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Belgian Chocolate</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Choc n Nut</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Hazelnut</span></div>
+        <div class="flavour-card"><span class="flavour-dot"></span><span class="flavour-name">Coffee</span></div>
+    </div>
+</section>
+
+<!-- ================================================================
+     SECTION 6 — Find Us (exterior.png dark-overlay background)
+     ================================================================ -->
+<section class="section findus-section" id="visit">
+    <div class="findus-bg"><img src="/shop/exterior.png" alt=""></div>
+    <div class="findus-overlay"></div>
+    <div class="findus-content">
+        <h2 class="section-title reveal-up">Find Us In Karachi</h2>
+        <div class="findus-grid">
+            <div class="findus-card reveal-up">Model Colony</div>
+            <div class="findus-card reveal-up">Kazimabad</div>
+            <div class="findus-card reveal-up">Shah Faisal Town</div>
+            <div class="findus-card reveal-up">Korangi</div>
+            <div class="findus-card reveal-up">North Nazimabad</div>
+            <div class="findus-card more reveal-up">+ 8 more outlets across Karachi</div>
+        </div>
+        <div class="findus-meta reveal-up">
+            <p>Open daily &middot; 4:00 PM &ndash; 10:00 PM</p>
+            <p class="findus-phone">0300-0227803 &middot; 0345-3648665</p>
+        </div>
+
+        <div class="findus-cta reveal-up">
+            <a class="findus-facebook-btn" href="https://www.facebook.com/pages/Alpine-Gelato/664821380260348" target="_blank" rel="noopener noreferrer">
+                <span class="fb-icon">f</span>
+                Follow us on Facebook
+            </a>
+        </div>
+
+        <h3 class="findus-map-heading reveal-up">Find Your Nearest Alpine Gelato</h3>
+        <div class="findus-map-card reveal-up">
+            <iframe
+                src="https://www.google.com/maps?q=Alpine+Gelato+Karachi&output=embed"
+                width="100%"
+                height="400"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Alpine Gelato Karachi — map">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     SECTION 7 — Footer
+     ================================================================ -->
+<footer class="site-footer-full" id="footer">
+    <div class="footer-inner">
+        <h2 class="footer-logo">Alpine Gelato</h2>
+        <p>Karachi's Most Favourite Ice Cream</p>
+        <p>Thirteen Outlets &middot; Est. 1990</p>
+        <p class="footer-phone">0300-0227803</p>
+    </div>
+</footer>
+
+<script>
+/* ===================== Hero: particles + mouse tilt (static Belgian Chocolate) ===================== */
+const imageWrap = document.getElementById('image-wrap');
+const flavorImg = document.getElementById('flavor-img');
+
+function watchImage(imgEl, wrapEl) {
+    imgEl.addEventListener('error', () => wrapEl.classList.add('img-missing'));
+    imgEl.addEventListener('load', () => wrapEl.classList.remove('img-missing'));
+}
+watchImage(flavorImg, imageWrap);
+
+const particlesContainer = document.getElementById('particles');
+const PARTICLE_COUNT = 20;
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 14 + 10;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = Math.random() * 100 + '%';
+    const duration = Math.random() * 5 + 5;
+    const delay = Math.random() * -10;
+    p.style.setProperty('--px', (Math.random() * 24 - 12) + 'px');
+    p.style.animation = `particleFloat ${duration}s ease-in-out ${delay}s infinite`;
+    particlesContainer.appendChild(p);
+}
+
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+@keyframes particleFloat {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(var(--px, 12px), -22px); }
+}`;
+document.head.appendChild(styleSheet);
+
+let mouse = { x: 0, y: 0 };
+let currentMouse = { x: 0, y: 0 };
+
+window.addEventListener('mousemove', (e) => {
+    mouse.x = (e.clientX / window.innerWidth) - 0.5;
+    mouse.y = (e.clientY / window.innerHeight) - 0.5;
+});
+
+function animate() {
+    const time = Date.now() * 0.001;
+    currentMouse.x += (mouse.x - currentMouse.x) * 0.05;
+    currentMouse.y += (mouse.y - currentMouse.y) * 0.05;
+
+    const bobY = Math.sin(time * (Math.PI * 2 / 6)) * 18;
+    const tiltX = currentMouse.y * -10;
+    const tiltY = currentMouse.x * 14;
+    imageWrap.style.transform = `translateY(${bobY}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+    particlesContainer.style.transform = `translate(${currentMouse.x * -30}px, ${currentMouse.y * -30}px)`;
+
+    requestAnimationFrame(animate);
+}
+imageWrap.style.transformStyle = 'preserve-3d';
+document.querySelector('.hero-center').style.perspective = '1000px';
+animate();
+
+/* ===================== Sections 2-6: Lenis + ScrollTrigger ===================== */
+gsap.registerPlugin(ScrollTrigger);
+
+const lenis = new Lenis({
+    duration: 1.15,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
+});
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(0);
+
+document.querySelectorAll('.nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target, { offset: -20 });
+        }
+    });
+});
+
+/* ---- Active nav link follows the section currently in view (scrollspy) ---- */
+(function initNavScrollspy() {
+    // #flavor-pin is the pinned cinematic section; grouping it with #hero and
+    // #flavours keeps "Flavours" highlighted for the entire flavour journey,
+    // not just the grid at the bottom.
+    const NAV_SECTION_GROUPS = [
+        { selector: '.nav-links a[href="#flavor-pin"]', sectionIds: ['hero', 'flavor-pin', 'flavours'] },
+        { selector: '.nav-links a[href="#experience"]', sectionIds: ['experience'] },
+        { selector: '.nav-links a[href="#visit"]', sectionIds: ['visit'] },
+        { selector: '.nav-links a[href="#footer"]', sectionIds: ['footer'] }
+    ];
+
+    const sectionToLink = {};
+    const observedSections = [];
+    NAV_SECTION_GROUPS.forEach(group => {
+        const linkEl = document.querySelector(group.selector);
+        if (!linkEl) return;
+        group.sectionIds.forEach(id => {
+            const sectionEl = document.getElementById(id);
+            if (sectionEl) {
+                sectionToLink[id] = linkEl;
+                observedSections.push(sectionEl);
+            }
+        });
+    });
+
+    const ratios = {};
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const spy = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { ratios[entry.target.id] = entry.intersectionRatio; });
+
+        let bestId = null;
+        let bestRatio = 0;
+        observedSections.forEach(sec => {
+            const ratio = ratios[sec.id] || 0;
+            if (ratio > bestRatio) {
+                bestRatio = ratio;
+                bestId = sec.id;
+            }
+        });
+
+        if (bestId && bestRatio > 0) {
+            const activeLink = sectionToLink[bestId];
+            navLinks.forEach(a => a.classList.remove('active'));
+            activeLink.classList.add('active');
+        }
+    }, { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
+
+    observedSections.forEach(sec => spy.observe(sec));
+})();
+
+/* ---- Particles inside each pinned flavour slide ---- */
+document.querySelectorAll('.pin-particles').forEach(container => {
+    for (let i = 0; i < 14; i++) {
+        const p = document.createElement('div');
+        p.className = 'pin-particle';
+        const size = Math.random() * 12 + 8;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.setProperty('--px', (Math.random() * 24 - 12) + 'px');
+        p.style.animation = `particleFloat ${Math.random() * 5 + 5}s ease-in-out ${Math.random() * -10}s infinite`;
+        container.appendChild(p);
+    }
+});
+
+/* ---- SECTION 2: pinned, scrubbed, cinematic flavour takeover ---- */
+ScrollTrigger.matchMedia({
+
+    // Desktop / tablet landscape: full pinned slide-through experience
+    '(min-width: 800px)': function () {
+        const slides = gsap.utils.toArray('.flavor-slide');
+        const texts = slides.map(s => s.querySelector('.flavor-pin-text'));
+        const numbers = slides.map(s => s.querySelector('.flavor-pin-number'));
+
+        gsap.set(slides, { xPercent: 100 });
+        gsap.set(slides[0], { xPercent: 0 });
+        gsap.set(texts, { x: -140, opacity: 0 });
+        gsap.set(texts[0], { x: 0, opacity: 1 });
+        gsap.set(numbers, { opacity: 0 });
+        gsap.set(numbers[0], { opacity: 1 });
+
+        const progressBar = document.getElementById('pin-progress-bar');
+
+        const pinTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.flavor-pin',
+                start: 'top top',
+                end: () => '+=' + (window.innerHeight * (slides.length - 1) * 1.4),
+                pin: true,
+                scrub: 1,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                onUpdate: (self) => {
+                    if (progressBar) progressBar.style.width = (self.progress * 100) + '%';
+                }
+            }
+        });
+
+        slides.forEach((slide, i) => {
+            if (i === 0) return;
+            const label = 'flavor' + i;
+            pinTl
+                .addLabel(label)
+                .to(slides[i - 1], { xPercent: -100, ease: 'none' }, label)
+                .to(texts[i - 1], { x: 140, opacity: 0, ease: 'none' }, label)
+                .to(numbers[i - 1], { opacity: 0, ease: 'none' }, label)
+                .to(slide, { xPercent: 0, ease: 'none' }, label)
+                .fromTo(texts[i], { x: -140, opacity: 0 }, { x: 0, opacity: 1, ease: 'none' }, label + '+=0.15')
+                .to(numbers[i], { opacity: 1, ease: 'none' }, label + '+=0.3');
+        });
+
+        return () => {
+            if (pinTl.scrollTrigger) pinTl.scrollTrigger.kill();
+            pinTl.kill();
+        };
+    },
+
+    // Mobile: simple stacked reveal, no pinning
+    '(max-width: 799px)': function () {
+        gsap.utils.toArray('.flavor-slide').forEach(slide => {
+            gsap.from(slide.querySelectorAll('.flavor-pin-text, .flavor-pin-media'), {
+                y: 50,
+                opacity: 0,
+                duration: 0.9,
+                stagger: 0.15,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: slide, start: 'top 75%', toggleActions: 'play none none reverse' }
+            });
+        });
+    }
+
+});
+
+/* ---- SECTION 3: Alpine Experience photo strip is a pure-CSS marquee
+   (see .marquee-track / @keyframes marquee) — no JS needed ---- */
+
+/* ---- Generic reveal-on-scroll for later sections ---- */
+gsap.utils.toArray('.reveal-up').forEach(el => {
+    gsap.from(el, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 82%', toggleActions: 'play none none reverse' }
+    });
+});
+
+/* ---- Pricing cards stagger in ---- */
+gsap.from('.pricing-card', {
+    y: 50,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.1,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.pricing-grid', start: 'top 82%' }
+});
+
+/* ---- Flavour grid: pop in with random delays + random glow colour ---- */
+const FLAVOUR_GLOWS = ['#C8860A', '#ff4d6d', '#7b2fff', '#4CAF50', '#ffffff'];
+document.querySelectorAll('.flavour-card').forEach(card => {
+    card.style.setProperty('--card-glow', FLAVOUR_GLOWS[Math.floor(Math.random() * FLAVOUR_GLOWS.length)]);
+});
+gsap.from('.flavour-card', {
+    scale: 0.75,
+    opacity: 0,
+    duration: 0.6,
+    ease: 'back.out(1.8)',
+    stagger: { each: 0.035, from: 'random' },
+    scrollTrigger: { trigger: '.flavours-grid', start: 'top 85%' }
+});
+
+/* ---- Footer reveal ---- */
+gsap.from('.footer-inner', {
+    y: 40,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.site-footer-full', start: 'top 88%' }
+});
+
+window.addEventListener('load', () => ScrollTrigger.refresh());
+</script>
+
+</body>
+</html>
