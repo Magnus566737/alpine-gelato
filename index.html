@@ -219,7 +219,8 @@ html.lenis, html.lenis body { height: auto; }
     border-radius: 50%;
     background: var(--accent-color);
     opacity: 0.85;
-    box-shadow: 0 0 18px 2px var(--accent-color);
+    box-shadow: 0 0 10px 1px var(--accent-color);
+    will-change: transform;
 }
 
 .image-wrap {
@@ -311,6 +312,7 @@ html.lenis, html.lenis body { height: auto; }
     justify-content: center;
     animation: scrollBounce 1.8s ease-in-out infinite;
     margin-left: auto;
+    will-change: transform;
 }
 
 @keyframes scrollBounce {
@@ -358,6 +360,7 @@ html.lenis, html.lenis body { height: auto; }
     justify-content: space-between;
     overflow: hidden;
     background: radial-gradient(circle at center, var(--fp1) 0%, var(--fp2) 55%, var(--fp3) 100%);
+    will-change: transform;
 }
 
 .flavor-pin-number {
@@ -383,7 +386,8 @@ html.lenis, html.lenis body { height: auto; }
     border-radius: 50%;
     background: var(--fp-accent);
     opacity: 0.7;
-    box-shadow: 0 0 16px 2px var(--fp-accent);
+    box-shadow: 0 0 10px 1px var(--fp-accent);
+    will-change: transform;
 }
 
 .flavor-pin-media {
@@ -397,6 +401,7 @@ html.lenis, html.lenis body { height: auto; }
     padding-left: 5%;
     z-index: 3;
     animation: pinBob 6s ease-in-out infinite;
+    will-change: transform;
 }
 
 @keyframes pinBob {
@@ -432,6 +437,7 @@ html.lenis, html.lenis body { height: auto; }
     flex-shrink: 0;
     padding-right: 5%;
     z-index: 4;
+    will-change: transform;
 }
 
 .flavor-pin-title {
@@ -864,6 +870,34 @@ html.lenis, html.lenis body { height: auto; }
     .pin-progress { display: none; }
 }
 
+/* ================================================================
+   Mobile (<=768px): lighter layout + performance
+   ================================================================ */
+@media (max-width: 768px) {
+    /* Nav: drop the link row, keep logo + Visit Us button only */
+    .nav-links { display: none; }
+    .logo { font-size: 1.4rem; }
+
+    /* Hero: image on top, text below, scroll cue last */
+    .hero-center { order: 1; }
+    .hero-left { order: 2; }
+    .hero-right { order: 3; }
+    .image-wrap { width: 90vw; height: 90vw; }
+    .headline { font-size: clamp(2rem, 9vw, 3rem); }
+    .desc { font-size: 0.95rem; }
+    .eyebrow { font-size: 0.68rem; }
+
+    /* Simpler 2-stop gradients instead of 3-stop radial (cheaper to paint) */
+    .hero { background: linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-outer) 100%); }
+    .flavor-slide { background: linear-gradient(180deg, var(--fp2) 0%, var(--fp3) 100%); }
+
+    /* Flavour slide heading sized down */
+    .flavor-pin-title { font-size: clamp(2.5rem, 8vw, 4rem); }
+
+    /* No floating particles on mobile at all (JS also skips generating them) */
+    .particles, .pin-particles { display: none; }
+}
+
 @media (max-width: 900px) {
     .findus-grid { grid-template-columns: repeat(2, 1fr); }
     .pricing-grid { grid-template-columns: repeat(2, 1fr); }
@@ -919,7 +953,7 @@ html.lenis, html.lenis body { height: auto; }
         <div class="center-glow"></div>
         <div class="particles" id="particles"></div>
         <div class="image-wrap" id="image-wrap">
-            <img id="flavor-img" src="/flavours/chocolate.png" alt="Belgian Chocolate gelato">
+            <img id="flavor-img" src="/flavours/chocolate.png" alt="Belgian Chocolate gelato" loading="lazy">
         </div>
     </div>
 
@@ -948,7 +982,7 @@ html.lenis, html.lenis body { height: auto; }
             <div class="pin-particles"></div>
             <div class="flavor-pin-media">
                 <div class="flavor-pin-img-wrap">
-                    <img src="/flavours/chocolate.png" alt="Belgian Chocolate gelato">
+                    <img loading="lazy" src="/flavours/chocolate.png" alt="Belgian Chocolate gelato">
                 </div>
             </div>
             <div class="flavor-pin-text">
@@ -962,7 +996,7 @@ html.lenis, html.lenis body { height: auto; }
             <div class="pin-particles"></div>
             <div class="flavor-pin-media">
                 <div class="flavor-pin-img-wrap">
-                    <img src="/flavours/strawberry.png" alt="Cheese Strawberry gelato">
+                    <img loading="lazy" src="/flavours/strawberry.png" alt="Cheese Strawberry gelato">
                 </div>
             </div>
             <div class="flavor-pin-text">
@@ -976,7 +1010,7 @@ html.lenis, html.lenis body { height: auto; }
             <div class="pin-particles"></div>
             <div class="flavor-pin-media">
                 <div class="flavor-pin-img-wrap">
-                    <img src="/flavours/blueberry.png" alt="Wild Blueberry gelato">
+                    <img loading="lazy" src="/flavours/blueberry.png" alt="Wild Blueberry gelato">
                 </div>
             </div>
             <div class="flavor-pin-text">
@@ -990,7 +1024,7 @@ html.lenis, html.lenis body { height: auto; }
             <div class="pin-particles"></div>
             <div class="flavor-pin-media">
                 <div class="flavor-pin-img-wrap">
-                    <img src="/flavours/pistachio.png" alt="Pistachio gelato">
+                    <img loading="lazy" src="/flavours/pistachio.png" alt="Pistachio gelato">
                 </div>
             </div>
             <div class="flavor-pin-text">
@@ -1004,7 +1038,7 @@ html.lenis, html.lenis body { height: auto; }
             <div class="pin-particles"></div>
             <div class="flavor-pin-media">
                 <div class="flavor-pin-img-wrap">
-                    <img src="/flavours/cookies-cream.png" alt="Cookies and Cream gelato">
+                    <img loading="lazy" src="/flavours/cookies-cream.png" alt="Cookies and Cream gelato">
                 </div>
             </div>
             <div class="flavor-pin-text">
@@ -1025,19 +1059,19 @@ html.lenis, html.lenis body { height: auto; }
     <p class="section-subtitle reveal-up">Where Karachi comes for ice cream since 1990</p>
     <div class="strip-viewport">
         <div class="marquee-track">
-            <div class="strip-item"><img src="/shop/exterior.png" alt="Alpine Gelato exterior"><div class="strip-overlay"><span>Since 1990</span></div></div>
-            <div class="strip-item"><img src="/shop/counter.png" alt="Alpine Gelato counter"><div class="strip-overlay"><span>25+ Flavours Daily</span></div></div>
-            <div class="strip-item"><img src="/shop/seating.png" alt="Alpine Gelato seating"><div class="strip-overlay"><span>Come Sit With Us</span></div></div>
-            <div class="strip-item"><img src="/shop/toppings.png" alt="Alpine Gelato toppings"><div class="strip-overlay"><span>Choose Your Toppings</span></div></div>
-            <div class="strip-item"><img src="/shop/cone.png" alt="Alpine Gelato cone"><div class="strip-overlay"><span>Made Fresh Daily</span></div></div>
-            <div class="strip-item"><img src="/shop/display.png" alt="Alpine Gelato display"><div class="strip-overlay"><span>Always In Season</span></div></div>
+            <div class="strip-item"><img loading="lazy" src="/shop/exterior.png" alt="Alpine Gelato exterior"><div class="strip-overlay"><span>Since 1990</span></div></div>
+            <div class="strip-item"><img loading="lazy" src="/shop/counter.png" alt="Alpine Gelato counter"><div class="strip-overlay"><span>25+ Flavours Daily</span></div></div>
+            <div class="strip-item"><img loading="lazy" src="/shop/seating.png" alt="Alpine Gelato seating"><div class="strip-overlay"><span>Come Sit With Us</span></div></div>
+            <div class="strip-item"><img loading="lazy" src="/shop/toppings.png" alt="Alpine Gelato toppings"><div class="strip-overlay"><span>Choose Your Toppings</span></div></div>
+            <div class="strip-item"><img loading="lazy" src="/shop/cone.png" alt="Alpine Gelato cone"><div class="strip-overlay"><span>Made Fresh Daily</span></div></div>
+            <div class="strip-item"><img loading="lazy" src="/shop/display.png" alt="Alpine Gelato display"><div class="strip-overlay"><span>Always In Season</span></div></div>
             <!-- duplicate set for a seamless infinite loop -->
-            <div class="strip-item" aria-hidden="true"><img src="/shop/exterior.png" alt=""><div class="strip-overlay"><span>Since 1990</span></div></div>
-            <div class="strip-item" aria-hidden="true"><img src="/shop/counter.png" alt=""><div class="strip-overlay"><span>25+ Flavours Daily</span></div></div>
-            <div class="strip-item" aria-hidden="true"><img src="/shop/seating.png" alt=""><div class="strip-overlay"><span>Come Sit With Us</span></div></div>
-            <div class="strip-item" aria-hidden="true"><img src="/shop/toppings.png" alt=""><div class="strip-overlay"><span>Choose Your Toppings</span></div></div>
-            <div class="strip-item" aria-hidden="true"><img src="/shop/cone.png" alt=""><div class="strip-overlay"><span>Made Fresh Daily</span></div></div>
-            <div class="strip-item" aria-hidden="true"><img src="/shop/display.png" alt=""><div class="strip-overlay"><span>Always In Season</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img loading="lazy" src="/shop/exterior.png" alt=""><div class="strip-overlay"><span>Since 1990</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img loading="lazy" src="/shop/counter.png" alt=""><div class="strip-overlay"><span>25+ Flavours Daily</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img loading="lazy" src="/shop/seating.png" alt=""><div class="strip-overlay"><span>Come Sit With Us</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img loading="lazy" src="/shop/toppings.png" alt=""><div class="strip-overlay"><span>Choose Your Toppings</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img loading="lazy" src="/shop/cone.png" alt=""><div class="strip-overlay"><span>Made Fresh Daily</span></div></div>
+            <div class="strip-item" aria-hidden="true"><img loading="lazy" src="/shop/display.png" alt=""><div class="strip-overlay"><span>Always In Season</span></div></div>
         </div>
     </div>
 </section>
@@ -1112,7 +1146,7 @@ html.lenis, html.lenis body { height: auto; }
      SECTION 6 — Find Us (exterior.png dark-overlay background)
      ================================================================ -->
 <section class="section findus-section" id="visit">
-    <div class="findus-bg"><img src="/shop/exterior.png" alt=""></div>
+    <div class="findus-bg"><img loading="lazy" src="/shop/exterior.png" alt=""></div>
     <div class="findus-overlay"></div>
     <div class="findus-content">
         <h2 class="section-title reveal-up">Find Us In Karachi</h2>
@@ -1166,6 +1200,8 @@ html.lenis, html.lenis body { height: auto; }
 
 <script>
 /* ===================== Hero: particles + mouse tilt (static Belgian Chocolate) ===================== */
+const IS_MOBILE = window.matchMedia('(max-width: 768px)').matches;
+
 const imageWrap = document.getElementById('image-wrap');
 const flavorImg = document.getElementById('flavor-img');
 
@@ -1176,20 +1212,22 @@ function watchImage(imgEl, wrapEl) {
 watchImage(flavorImg, imageWrap);
 
 const particlesContainer = document.getElementById('particles');
-const PARTICLE_COUNT = 20;
-for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 14 + 10;
-    p.style.width = size + 'px';
-    p.style.height = size + 'px';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.top = Math.random() * 100 + '%';
-    const duration = Math.random() * 5 + 5;
-    const delay = Math.random() * -10;
-    p.style.setProperty('--px', (Math.random() * 24 - 12) + 'px');
-    p.style.animation = `particleFloat ${duration}s ease-in-out ${delay}s infinite`;
-    particlesContainer.appendChild(p);
+const PARTICLE_COUNT = 8;
+if (!IS_MOBILE) {
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 14 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        const duration = Math.random() * 5 + 5;
+        const delay = Math.random() * -10;
+        p.style.setProperty('--px', (Math.random() * 24 - 12) + 'px');
+        p.style.animation = `particleFloat ${duration}s ease-in-out ${delay}s infinite`;
+        particlesContainer.appendChild(p);
+    }
 }
 
 const styleSheet = document.createElement('style');
@@ -1230,7 +1268,7 @@ animate();
 gsap.registerPlugin(ScrollTrigger);
 
 const lenis = new Lenis({
-    duration: 1.15,
+    duration: IS_MOBILE ? 0.6 : 1.15,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true
 });
@@ -1300,21 +1338,23 @@ document.querySelectorAll('.nav a[href^="#"]').forEach(link => {
     observedSections.forEach(sec => spy.observe(sec));
 })();
 
-/* ---- Particles inside each pinned flavour slide ---- */
-document.querySelectorAll('.pin-particles').forEach(container => {
-    for (let i = 0; i < 14; i++) {
-        const p = document.createElement('div');
-        p.className = 'pin-particle';
-        const size = Math.random() * 12 + 8;
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = Math.random() * 100 + '%';
-        p.style.setProperty('--px', (Math.random() * 24 - 12) + 'px');
-        p.style.animation = `particleFloat ${Math.random() * 5 + 5}s ease-in-out ${Math.random() * -10}s infinite`;
-        container.appendChild(p);
-    }
-});
+/* ---- Particles inside each pinned flavour slide (skipped on mobile) ---- */
+if (!IS_MOBILE) {
+    document.querySelectorAll('.pin-particles').forEach(container => {
+        for (let i = 0; i < 8; i++) {
+            const p = document.createElement('div');
+            p.className = 'pin-particle';
+            const size = Math.random() * 12 + 8;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.setProperty('--px', (Math.random() * 24 - 12) + 'px');
+            p.style.animation = `particleFloat ${Math.random() * 5 + 5}s ease-in-out ${Math.random() * -10}s infinite`;
+            container.appendChild(p);
+        }
+    });
+}
 
 /* ---- SECTION 2: pinned, scrubbed, cinematic flavour takeover ---- */
 ScrollTrigger.matchMedia({
